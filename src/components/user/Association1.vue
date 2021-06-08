@@ -25,12 +25,14 @@
         <el-table-column label="社团审核状态" prop="assStatus"></el-table-column>
         <el-table-column label="社团创建时间" prop="assCreateTime"></el-table-column>
         <el-table-column label="操作">
-          <el-tooltip effect="dark" content="查看公告" placement="top">
-            <el-button type="success" icon="el-icon-s-claim"></el-button>
-          </el-tooltip>
-          <el-tooltip effect="dark" content="报名" placement="top">
-            <el-button type="primary" icon="el-icon-s-custom" @click="sign"></el-button>
-          </el-tooltip>
+          <template slot-scope="scope">
+            <el-tooltip effect="dark" content="查看公告" placement="top">
+              <el-button type="success" icon="el-icon-s-claim" @click="lookNotic(scope.row.assId)"></el-button>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="报名" placement="top">
+              <el-button type="primary" icon="el-icon-s-custom" @click="sign"></el-button>
+            </el-tooltip>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 分页区域 -->
@@ -44,6 +46,20 @@
       :total="total">
       </el-pagination>
     </el-card>
+    <!-- 公告栏 -->
+    <el-dialog
+      title="公告"
+      :visible.sync="noticeDialogVisible"
+      width="50%">
+      <el-table :data="noticelist" border stripe>
+        <el-table-column label="公告名称" prop="noticeName"></el-table-column>
+        <el-table-column label="公告简介" prop="noticeBrief"></el-table-column>
+        <el-table-column label="社团名字" prop="assName"></el-table-column>
+      </el-table>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="noticeDialogVisible = false">关 闭</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -59,7 +75,9 @@ export default {
       },
       associatelist: [],
       total: 0,
-      signlist: []
+      signlist: [],
+      noticeDialogVisible: false, // 公告界面的显示
+      noticelist: []
     }
   },
   created() {
@@ -85,6 +103,15 @@ export default {
     sign() {
       // 社团编号
       // this.associatelist.  ass
+    },
+    async lookNotic(assId) {
+      const { data: res } = await this.$http.get('notice/searchAllNotice', { params: {assId: assId} })
+      if (res.code !== 200) return this.$message.error('获取社团公告失败！')
+      this.noticelist = res.data.notices
+      console.log(this.noticelist)
+      console.log(this.noticelist[0].noticeName)
+      this.noticeDialogVisible = true
+      this.$message.success('获取社团公告成功！')
     }
   }
 }

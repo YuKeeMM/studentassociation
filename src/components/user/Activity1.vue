@@ -20,9 +20,14 @@
       <el-table :data="activitylist" border stripe>
         <el-table-column type="index"></el-table-column>
         <el-table-column label="活动名称" prop="activityName"></el-table-column>
+        <el-table-column label="所属社团" prop="assName"></el-table-column>
         <el-table-column label="活动简介" prop="activityBrief"></el-table-column>
         <el-table-column label="活动主题" prop="activityType"></el-table-column>
-        <el-table-column label="活动是否可以请假" prop="activityLeave"></el-table-column>
+        <el-table-column label="活动是否可以请假">
+          <template slot-scope="scope">
+            <el-switch v-model="scope.row.activityLeave"></el-switch>
+          </template>
+        </el-table-column>
         <el-table-column label="活动审核状态" prop="activityStatus"></el-table-column>
         <el-table-column label="活动报名限制人数" prop="activityPeople"></el-table-column>
         <el-table-column label="活动学分" prop="activityCredit"></el-table-column>

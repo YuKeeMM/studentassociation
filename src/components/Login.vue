@@ -96,8 +96,7 @@ export default {
         userRole: [
           { required: true, message: '请选择用户身份', trigger: 'blur' }
         ]
-      },
-      userlist: []
+      }
     }
   },
   methods: {
