@@ -4,13 +4,13 @@
         <el-header>
             <div>
                 <img src="../assets/zucc2.jpg" alt="">
-                <span class="el-header-write">学生社团系统（你好，同学！）</span>
+                <span class="el-header-write">学生社团系统（你好，管理员！）</span>
             </div>
             <el-button type="info" @click="logout">退出</el-button>
         </el-header>
         <el-container>
             <!-- 侧边栏 -->
-            <el-aside :width="isCollapse ? '64px' : '200px'">
+            <!-- <el-aside :width="isCollapse ? '64px' : '200px'">
                 <div class="toggle-button" @click="toggleCollapse">|||</div>
                 <el-menu
                     background-color="#333744"
@@ -19,7 +19,6 @@
                     :collapse="isCollapse"
                     :collapse-transition="false"
                     :router="true">
-                    <!-- 一级菜单(index只接受字符串，要把数值变为字符串在后面加一个''空字符串就好) -->
                     <el-menu-item index="first">
                       <i class="el-icon-s-home"></i>
                       <span slot="title">首页</span>
@@ -29,7 +28,6 @@
                         <i class="el-icon-trophy"></i>
                         <span>社团广场</span>
                         </template>
-                        <!-- 二级菜单 -->
                         <el-menu-item index="association1">
                           <i class="el-icon-menu"></i>
                           <span>社团报名</span>
@@ -44,7 +42,6 @@
                         <i class="el-icon-ship"></i>
                         <span>活动广场</span>
                         </template>
-                        <!-- 二级菜单 -->
                         <el-menu-item index="activity1">
                           <i class="el-icon-menu"></i>
                           <span>活动报名</span>
@@ -59,10 +56,8 @@
                       <span slot="title">个人信息</span>
                     </el-menu-item>
                 </el-menu>
-            </el-aside>
-            <!-- 右侧内容主体 -->
+            </el-aside> -->
             <el-main>
-              <!-- 路由占位符 -->
               <router-view></router-view>
             </el-main>
         </el-container>

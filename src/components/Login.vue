@@ -60,7 +60,7 @@ export default {
     return {
       // 这是登录表单的数据绑定对象
       loginForm: {
-        phone: '13588386674',
+        phone: '17826850186',
         password: '123456'
       },
       // 这是表单的验证规则对象
@@ -124,7 +124,8 @@ export default {
         console.log(this.$root.USER.userName)
         // 根据后端返回的userRole值进入不同的界面
         if (res.data.user.userRole === '普通用户') this.$router.push('/home')// 进入普通用户界面
-        else this.$router.push('/home2')// 进入管理员界面
+        else if (res.data.user.userRole === '社长') this.$router.push('/home2')// 进入社长界面
+        else this.$router.push('/home3')// 进入管理员界面
       })
     },
     register () {
