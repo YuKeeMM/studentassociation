@@ -38,7 +38,7 @@
                           <i class="el-icon-menu"></i>
                           <span>我参加的社团</span>
                         </el-menu-item>
-                        <el-menu-item index="association">
+                        <el-menu-item index="associationchief">
                           <i class="el-icon-menu"></i>
                           <span>我管理的社团</span>
                         </el-menu-item>

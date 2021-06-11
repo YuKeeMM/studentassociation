@@ -30,6 +30,9 @@ new Vue({
         userCredit: null,
         userRole: null,
         userCreateTime: null
+      }],
+      ASSOCIATION: [{
+        assId: null
       }]
     }
   },

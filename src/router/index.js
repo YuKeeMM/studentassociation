@@ -15,6 +15,7 @@ import First2 from '../components/chief/First2.vue'
 import User2 from '../components/chief/User2.vue'
 import Association12 from '../components/chief/Association12.vue'
 import AssociationMy2 from '../components/chief/AssociationMy2.vue'
+import AssociationChief from '../components/chief/AssociationChief.vue'
 import Activity12 from '../components/chief/Activity12.vue'
 import ActivityMy2 from '../components/chief/ActivityMy2.vue'
 import Home3 from '../components/Home3.vue'
@@ -50,6 +51,7 @@ const router = new VueRouter({
         { path: '/user2', component: User2 },
         { path: '/association12', component: Association12 },
         { path: '/associationmy2', component: AssociationMy2 },
+        { path: '/associationchief', component: AssociationChief },
         { path: '/activity12', component: Activity12 },
         { path: '/activitymy2', component: ActivityMy2 }
       ]
