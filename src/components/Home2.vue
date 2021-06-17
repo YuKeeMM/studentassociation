@@ -32,12 +32,12 @@
                         <!-- 二级菜单 -->
                         <el-menu-item index="association12">
                           <i class="el-icon-menu"></i>
-                          <span>社团报名</span>
+                          <span>社团查看</span>
                         </el-menu-item>
-                        <el-menu-item index="associationmy2">
+                        <!-- <el-menu-item index="associationmy2">
                           <i class="el-icon-menu"></i>
                           <span>我参加的社团</span>
-                        </el-menu-item>
+                        </el-menu-item> -->
                         <el-menu-item index="associationchief">
                           <i class="el-icon-menu"></i>
                           <span>我管理的社团</span>
@@ -51,11 +51,15 @@
                         <!-- 二级菜单 -->
                         <el-menu-item index="activity12">
                           <i class="el-icon-menu"></i>
-                          <span>活动报名</span>
+                          <span>活动查看</span>
                         </el-menu-item>
-                        <el-menu-item index="activitymy2">
+                        <!-- <el-menu-item index="activitymy2">
                           <i class="el-icon-menu"></i>
                           <span>我参加的活动</span>
+                        </el-menu-item> -->
+                        <el-menu-item index="activitychief">
+                          <i class="el-icon-menu"></i>
+                          <span>我管理的活动</span>
                         </el-menu-item>
                     </el-submenu>
                     <el-menu-item index="user2">

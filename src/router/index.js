@@ -18,8 +18,16 @@ import AssociationMy2 from '../components/chief/AssociationMy2.vue'
 import AssociationChief from '../components/chief/AssociationChief.vue'
 import Activity12 from '../components/chief/Activity12.vue'
 import ActivityMy2 from '../components/chief/ActivityMy2.vue'
+import ActivityChief from '../components/chief/ActivityChief.vue'
 import Home3 from '../components/Home3.vue'
 import Welcome3 from '../components/Welcome3.vue'
+import First3 from '../components/admin/First3.vue'
+import User3 from '../components/admin/User3.vue'
+import Association13 from '../components/admin/Association13.vue'
+import AssociationMy3 from '../components/admin/AssociationMy3.vue'
+import Activity13 from '../components/admin/Activity13.vue'
+import ActivityMy3 from '../components/admin/ActivityMy3.vue'
+import ActivityNo3 from '../components/admin/ActivityNo3.vue'
 
 Vue.use(VueRouter)
 
@@ -53,7 +61,8 @@ const router = new VueRouter({
         { path: '/associationmy2', component: AssociationMy2 },
         { path: '/associationchief', component: AssociationChief },
         { path: '/activity12', component: Activity12 },
-        { path: '/activitymy2', component: ActivityMy2 }
+        { path: '/activitymy2', component: ActivityMy2 },
+        { path: '/activitychief', component: ActivityChief }
       ]
     },
     {
@@ -61,7 +70,14 @@ const router = new VueRouter({
       component: Home3,
       redirect: '/Welcome3',
       children: [
-        { path: '/welcome3', component: Welcome3 }
+        { path: '/welcome3', component: Welcome3 },
+        { path: '/first3', component: First3 },
+        { path: '/user3', component: User3 },
+        { path: '/association13', component: Association13 },
+        { path: '/associationmy3', component: AssociationMy3 },
+        { path: '/activity13', component: Activity13 },
+        { path: '/activitymy3', component: ActivityMy3 },
+        { path: '/activityno3', component: ActivityNo3 }
       ]
     }
   ]

@@ -10,7 +10,7 @@
         </el-header>
         <el-container>
             <!-- 侧边栏 -->
-            <!-- <el-aside :width="isCollapse ? '64px' : '200px'">
+            <el-aside :width="isCollapse ? '64px' : '200px'">
                 <div class="toggle-button" @click="toggleCollapse">|||</div>
                 <el-menu
                     background-color="#333744"
@@ -19,45 +19,54 @@
                     :collapse="isCollapse"
                     :collapse-transition="false"
                     :router="true">
-                    <el-menu-item index="first">
+                    <!-- 一级菜单(index只接受字符串，要把数值变为字符串在后面加一个''空字符串就好) -->
+                    <el-menu-item index="first3">
                       <i class="el-icon-s-home"></i>
                       <span slot="title">首页</span>
                     </el-menu-item>
-                    <el-submenu index="association">
+                    <el-submenu index="association3">
                         <template slot="title">
                         <i class="el-icon-trophy"></i>
                         <span>社团广场</span>
                         </template>
-                        <el-menu-item index="association1">
+                        <!-- 二级菜单 -->
+                        <el-menu-item index="association13">
                           <i class="el-icon-menu"></i>
-                          <span>社团报名</span>
+                          <span>社团查看</span>
                         </el-menu-item>
-                        <el-menu-item index="associationmy">
+                        <!-- <el-menu-item index="associationmy3">
                           <i class="el-icon-menu"></i>
                           <span>我参加的社团</span>
-                        </el-menu-item>
+                        </el-menu-item> -->
                     </el-submenu>
-                    <el-submenu index="activity">
+                    <el-submenu index="activity3">
                         <template slot="title">
                         <i class="el-icon-ship"></i>
                         <span>活动广场</span>
                         </template>
-                        <el-menu-item index="activity1">
+                        <!-- 二级菜单 -->
+                        <el-menu-item index="activity13">
                           <i class="el-icon-menu"></i>
-                          <span>活动报名</span>
+                          <span>活动查看</span>
                         </el-menu-item>
-                        <el-menu-item index="activitymy">
+                        <el-menu-item index="activitymy3">
                           <i class="el-icon-menu"></i>
-                          <span>我参加的活动</span>
+                          <span>待审核活动查看</span>
+                        </el-menu-item>
+                        <el-menu-item index="activityno3">
+                          <i class="el-icon-menu"></i>
+                          <span>审核为通过活动查看</span>
                         </el-menu-item>
                     </el-submenu>
-                    <el-menu-item index="user">
+                    <el-menu-item index="user3">
                       <i class="el-icon-user"></i>
                       <span slot="title">个人信息</span>
                     </el-menu-item>
                 </el-menu>
-            </el-aside> -->
+            </el-aside>
+            <!-- 右侧内容主体 -->
             <el-main>
+              <!-- 路由占位符 -->
               <router-view></router-view>
             </el-main>
         </el-container>

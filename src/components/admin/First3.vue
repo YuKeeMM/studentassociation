@@ -1,5 +1,5 @@
 <template>
     <div>
-        <h3>Welcome mmd3</h3>
+        <h3>首页</h3>
     </div>
 </template>

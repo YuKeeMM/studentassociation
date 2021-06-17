@@ -4,7 +4,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>社团广场</el-breadcrumb-item>
-      <el-breadcrumb-item>社团报名</el-breadcrumb-item>
+      <el-breadcrumb-item>社团查看</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片区域 -->
     <el-card>
@@ -29,9 +29,9 @@
             <el-tooltip effect="dark" content="查看公告" placement="top">
               <el-button type="success" icon="el-icon-s-claim" @click="lookNotic(scope.row.assId)"></el-button>
             </el-tooltip>
-            <el-tooltip effect="dark" content="报名" placement="top">
+            <!-- <el-tooltip effect="dark" content="报名" placement="top">
               <el-button type="primary" icon="el-icon-s-custom" @click="signAssociation(scope.row.assId)"></el-button>
-            </el-tooltip>
+            </el-tooltip> -->
           </template>
         </el-table-column>
       </el-table>

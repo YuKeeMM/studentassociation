@@ -4,20 +4,20 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动广场</el-breadcrumb-item>
-      <el-breadcrumb-item>活动查看</el-breadcrumb-item>
+      <el-breadcrumb-item>待审核活动查看</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片区域 -->
     <el-card>
       <!-- 搜索与添加区域 -->
       <el-row :gutter="20">
         <el-col :span="7">
-          <el-input placeholder="请输入活动名称" v-model="queryInfo.query" clearable @clear="getActivityList">
-            <el-button slot="append" icon="el-icon-search" @click="getActivityList"></el-button>
+          <el-input placeholder="请输入活动名称" v-model="queryInfo.query" clearable @clear="getActivityListMy">
+            <el-button slot="append" icon="el-icon-search" @click="getActivityListMy"></el-button>
           </el-input>
         </el-col>
       </el-row>
       <!-- 用户列表区域 -->
-      <el-table :data="activitylist" border stripe>
+      <el-table :data="activitylistmy" border stripe>
         <el-table-column type="index"></el-table-column>
         <el-table-column label="活动名称" prop="activityName"></el-table-column>
         <el-table-column label="所属社团" prop="assName"></el-table-column>
@@ -37,12 +37,19 @@
         <el-table-column label="活动报名结束时间" prop="activitySignEndTime"></el-table-column>
         <el-table-column label="活动开始时间" prop="activityBeginTime"></el-table-column>
         <el-table-column label="活动结束时间" prop="activityEndTime"></el-table-column>
+        <el-table-column label="审核状态" prop="userActivityStatus"></el-table-column>
         <el-table-column label="操作">
           <!-- <template slot-scope="scope">
-            <el-tooltip effect="dark" content="报名" placement="top">
-              <el-button type="primary" icon="el-icon-s-custom" @click="signActivity(scope.row.activityId)"></el-button>
+            <el-tooltip effect="dark" content="退出活动" placement="top">
+              <el-button type="primary" icon="el-icon-s-custom" @click="quitActivity(scope.row.activityId)"></el-button>
             </el-tooltip>
           </template> -->
+          <el-tooltip effect="dark" content="审核通过" placement="top">
+              <el-button type="success" icon="el-icon-s-custom" @click="agree(scope.row.activityId)"></el-button>
+            </el-tooltip>
+            <el-tooltip effect="dark" content="审核未通过" placement="top">
+              <el-button type="danger" icon="el-icon-s-custom" @click="disAgree(scope.row.activityId)"></el-button>
+            </el-tooltip>
         </el-table-column>
       </el-table>
       <!-- 分页区域 -->
@@ -68,38 +75,49 @@ export default {
         query: '', // 查询参数
         current: 1,
         size: 2
+        // userId: this.$root.USER.userId
       },
-      activitylist: [],
+      activitylistmy: [],
       total: 0,
       signlist: []
     }
   },
   created() {
-    this.getActivityList()
+    this.getActivityListMy()
   },
   methods: {
-    async getActivityList() {
-      const { data: res } = await this.$http.get('activity/searchAllActivity', { params: this.queryInfo })
-      if (res.code !== 200) return this.$message.error('获取活动列表失败！')
-      this.activitylist = res.data.records
+    async getActivityListMy() {
+      const { data: res } = await this.$http.get('', { params: this.queryInfo })
+      if (res.code === 201) return this.$message.error('您还' + res.data.提示)
+      this.activitylistmy = res.data.records
       this.total = res.data.total
       console.log(res)
     },
     handleSizeChange(newSize) {
       this.queryInfo.size = newSize
       // 重新获取数据
-      this.getActivityList()
+      this.getActivityListMy()
     },
     handleCurrentChange(newPage) {
       this.queryInfo.current = newPage
-      this.getActivityList()
+      this.getActivityListMy()
     },
-    async signActivity(activityId) {
-      const { data: res } = await this.$http.get('user/registerActivity', { params: { activityId: activityId, userId: this.$root.USER.userId } })
+    async agree(activityId) {
+      const { data: res } = await this.$http.get('', { params: { } })
       if (res.code === 201) return this.$message.error(res.data.提示)
-      console.log(res)
-      this.$message.success('活动报名成功！')
+      this.$message.success(res.data.提示)
+    },
+    async disAgree(activityId) {
+      const { data: res } = await this.$http.get('', { params: { } })
+      if (res.code === 201) return this.$message.error(res.data.提示)
+      this.$message.success(res.data.提示)
     }
+    // async quitActivity(activityId) {
+    //   const { data: res } = await this.$http.get('user/quitActivity', { params: { activityId: activityId, userId: this.$root.USER.userId } })
+    //   if (res.code === 201) return this.$message.error(res.data.提示)
+    //   console.log(res)
+    //   this.$message.success(res.data.提示)
+    // }
   }
 }
 </script>

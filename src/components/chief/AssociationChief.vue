@@ -136,7 +136,7 @@
     </el-dialog>
     <!-- 社团待审核成员栏 -->
     <el-dialog
-      title="待审核成员"
+      title="社团待审核成员"
       :visible.sync="userDialogVisible2"
       width="80%">
       <el-table :data="userlist2" border stripe>
