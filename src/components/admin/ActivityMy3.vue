@@ -39,17 +39,17 @@
         <el-table-column label="活动结束时间" prop="activityEndTime"></el-table-column>
         <el-table-column label="审核状态" prop="userActivityStatus"></el-table-column>
         <el-table-column label="操作">
-          <!-- <template slot-scope="scope">
-            <el-tooltip effect="dark" content="退出活动" placement="top">
+          <template slot-scope="scope">
+            <!-- <el-tooltip effect="dark" content="退出活动" placement="top">
               <el-button type="primary" icon="el-icon-s-custom" @click="quitActivity(scope.row.activityId)"></el-button>
-            </el-tooltip>
-          </template> -->
-          <el-tooltip effect="dark" content="审核通过" placement="top">
+            </el-tooltip> -->
+            <el-tooltip effect="dark" content="审核通过" placement="top">
               <el-button type="success" icon="el-icon-s-custom" @click="agree(scope.row.activityId)"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="审核未通过" placement="top">
               <el-button type="danger" icon="el-icon-s-custom" @click="disAgree(scope.row.activityId)"></el-button>
             </el-tooltip>
+          </template>
         </el-table-column>
       </el-table>
       <!-- 分页区域 -->
@@ -70,12 +70,10 @@
 export default {
   data() {
     return {
-      // 获取用户列表的参数对象
       queryInfo: {
         query: '', // 查询参数
         current: 1,
         size: 2
-        // userId: this.$root.USER.userId
       },
       activitylistmy: [],
       total: 0,
@@ -87,7 +85,7 @@ export default {
   },
   methods: {
     async getActivityListMy() {
-      const { data: res } = await this.$http.get('', { params: this.queryInfo })
+      const { data: res } = await this.$http.get('activity/searchActivityWaitStatue', { params: this.queryInfo })
       if (res.code === 201) return this.$message.error('您还' + res.data.提示)
       this.activitylistmy = res.data.records
       this.total = res.data.total
@@ -103,12 +101,12 @@ export default {
       this.getActivityListMy()
     },
     async agree(activityId) {
-      const { data: res } = await this.$http.get('', { params: { } })
+      const { data: res } = await this.$http.get('activity/passActivityStatus', { params: { activityId: activityId } })
       if (res.code === 201) return this.$message.error(res.data.提示)
       this.$message.success(res.data.提示)
     },
     async disAgree(activityId) {
-      const { data: res } = await this.$http.get('', { params: { } })
+      const { data: res } = await this.$http.get('activity/disPassActivityStatus', { params: { activityId: activityId } })
       if (res.code === 201) return this.$message.error(res.data.提示)
       this.$message.success(res.data.提示)
     }

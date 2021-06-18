@@ -49,7 +49,7 @@
               <el-button type="danger" icon="el-icon-s-custom" @click="lookUser2(scope.row.activityId)" size="mini"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="查看审核未通过成员" placement="top">
-              <el-button type="danger" icon="el-icon-s-custom" @click="lookUser3(scope.row.assId)" size="mini"></el-button>
+              <el-button type="danger" icon="el-icon-s-custom" @click="lookUser3(scope.row.activityId)" size="mini"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -196,8 +196,8 @@ export default {
       console.log(this.activityId2)
       console.log(this.userlist2)
     },
-    async lookUser3(assId) {
-      const { data: res } = await this.$http.get('', { params: { query: '', current: 1, size: 5, assId: assId } })
+    async lookUser3(activityId) {
+      const { data: res } = await this.$http.get('activity/searchActivityMemberNotStatue', { params: { query: '', current: 1, size: 5, activityId: activityId } })
       if (res.code === 201) return this.$message.error(res.data.提示)
       this.userlist3 = res.data.records
       this.userDialogVisible3 = true

@@ -29,9 +29,9 @@
         <el-table-column label="社团创建时间" prop="assCreateTime"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <!-- <el-tooltip effect="dark" content="查看公告" placement="top">
+            <el-tooltip effect="dark" content="查看公告" placement="top">
               <el-button type="success" icon="el-icon-s-claim" @click="lookNotic(scope.row.assId)" size="mini"></el-button>
-            </el-tooltip> -->
+            </el-tooltip>
             <!-- <el-tooltip effect="dark" content="报名" placement="top">
               <el-button type="primary" icon="el-icon-s-custom" @click="signAssociation(scope.row.assId)"></el-button>
             </el-tooltip> -->

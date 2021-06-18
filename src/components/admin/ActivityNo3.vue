@@ -74,7 +74,6 @@ export default {
         query: '',
         current: 1,
         size: 2
-        // userId: this.$root.USER.userId
       },
       activitylistmy: [],
       total: 0,
@@ -86,7 +85,7 @@ export default {
   },
   methods: {
     async getActivityListMy() {
-      const { data: res } = await this.$http.get('', { params: this.queryInfo })
+      const { data: res } = await this.$http.get('activity/searchActivityNoyPassStatue', { params: this.queryInfo })
       if (res.code === 201) return this.$message.error('您还' + res.data.提示)
       this.activitylistmy = res.data.records
       this.total = res.data.total
