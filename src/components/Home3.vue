@@ -55,7 +55,7 @@
                         </el-menu-item>
                         <el-menu-item index="activityno3">
                           <i class="el-icon-menu"></i>
-                          <span>审核为通过活动查看</span>
+                          <span>审核未通过活动查看</span>
                         </el-menu-item>
                     </el-submenu>
                     <el-menu-item index="user3">

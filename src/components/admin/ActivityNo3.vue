@@ -2,7 +2,7 @@
   <div>
     <!-- 面包屑组件 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home3' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动广场</el-breadcrumb-item>
       <el-breadcrumb-item>审核未通过活动查看</el-breadcrumb-item>
     </el-breadcrumb>
@@ -37,7 +37,6 @@
         <el-table-column label="活动报名结束时间" prop="activitySignEndTime"></el-table-column>
         <el-table-column label="活动开始时间" prop="activityBeginTime"></el-table-column>
         <el-table-column label="活动结束时间" prop="activityEndTime"></el-table-column>
-        <el-table-column label="审核状态" prop="userActivityStatus"></el-table-column>
         <el-table-column label="操作">
           <!-- <template slot-scope="scope">
             <el-tooltip effect="dark" content="退出活动" placement="top">
@@ -86,7 +85,7 @@ export default {
   methods: {
     async getActivityListMy() {
       const { data: res } = await this.$http.get('activity/searchActivityNoyPassStatue', { params: this.queryInfo })
-      if (res.code === 201) return this.$message.error('您还' + res.data.提示)
+      if (res.code === 201) return this.$message.error(res.data.提示)
       this.activitylistmy = res.data.records
       this.total = res.data.total
       console.log(res)

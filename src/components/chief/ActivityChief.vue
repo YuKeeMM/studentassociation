@@ -2,9 +2,9 @@
   <div>
     <!-- 面包屑组件 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home2' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>社团广场</el-breadcrumb-item>
-      <el-breadcrumb-item>我管理的社团</el-breadcrumb-item>
+      <el-breadcrumb-item>我管理的活动</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
       <!-- 搜索与添加区域 -->
@@ -157,7 +157,7 @@
         <el-table-column label="创建时间" prop="userCreateTime"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-tooltip effect="dark" content="踢出社团" placement="top">
+            <el-tooltip effect="dark" content="踢出活动" placement="top">
               <el-button type="success" icon="el-icon-s-custom" @click="outUser(scope.row.userId)"></el-button>
             </el-tooltip>
           </template>

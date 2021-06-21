@@ -2,7 +2,7 @@
   <div>
     <!-- 面包屑组件 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home3' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>社团广场</el-breadcrumb-item>
       <el-breadcrumb-item>社团查看</el-breadcrumb-item>
     </el-breadcrumb>
@@ -32,26 +32,23 @@
             <el-tooltip effect="dark" content="查看公告" placement="top">
               <el-button type="success" icon="el-icon-s-claim" @click="lookNotic(scope.row.assId)" size="mini"></el-button>
             </el-tooltip>
-            <!-- <el-tooltip effect="dark" content="报名" placement="top">
-              <el-button type="primary" icon="el-icon-s-custom" @click="signAssociation(scope.row.assId)"></el-button>
-            </el-tooltip> -->
             <el-tooltip effect="dark" content="查看社长" placement="top">
-              <el-button type="primary" icon="el-icon-s-custom" @click="lookChief(scope.row.assId)" size="mini"></el-button>
+              <el-button type="warning" icon="el-icon-user" @click="lookChief(scope.row.assId)" size="mini"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="设置社长" placement="top">
-              <el-button type="primary" icon="el-icon-s-custom" @click="setChief1(scope.row.assId)" size="mini"></el-button>
+              <el-button type="warning" icon="el-icon-user" @click="setChief1(scope.row.assId)" size="mini"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="查看成员" placement="top">
               <el-button type="primary" icon="el-icon-s-custom" @click="lookUser(scope.row.assId)" size="mini"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="查看待审核成员" placement="top">
-              <el-button type="danger" icon="el-icon-s-custom" @click="lookUser2(scope.row.assId)" size="mini"></el-button>
+              <el-button type="primary" icon="el-icon-s-custom" @click="lookUser2(scope.row.assId)" size="mini"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="查看审核未通过成员" placement="top">
-              <el-button type="danger" icon="el-icon-s-custom" @click="lookUser3(scope.row.assId)" size="mini"></el-button>
+              <el-button type="primary" icon="el-icon-s-custom" @click="lookUser3(scope.row.assId)" size="mini"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="删除社团" placement="top">
-              <el-button type="success" icon="el-icon-s-custom" @click="deleteAss(scope.row.assId)" size="mini"></el-button>
+              <el-button type="danger" icon="el-icon-close" @click="deleteAss(scope.row.assId)" size="mini"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -95,9 +92,6 @@
         <el-form-item label="用户编号" prop="userId">
           <el-input v-model="setChiefForm.userId"></el-input>
         </el-form-item>
-        <el-form-item label="社团编号" prop="assId">
-          <el-input v-model="setChiefForm.assId"></el-input>
-        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="setchiefDialogVisible = false">取 消</el-button>
@@ -118,11 +112,11 @@
         <el-button @click="noticeDialogVisible = false">关 闭</el-button>
       </span>
     </el-dialog>
-    <!-- 新建活动 -->
+    <!-- 新建社团 -->
     <el-dialog
       title="新建社团"
       :visible.sync="addAssDialogVisible"
-      width="80%"
+      width="50%"
       @close="addAssDialogClosed">
       <el-form :model="addForm" :rules="addAssRules" ref="addAssRef" label-width="100px">
         <el-form-item label="社团名称" prop="assName">
@@ -172,14 +166,14 @@
         <el-table-column label="用户身份" prop="userRole"></el-table-column>
         <el-table-column label="创建时间" prop="userCreateTime"></el-table-column>
         <el-table-column label="操作">
-          <!-- <template slot-scope="scope">
+          <template slot-scope="scope">
             <el-tooltip effect="dark" content="审核通过" placement="top">
               <el-button type="success" icon="el-icon-s-custom" @click="agree(scope.row.userId)"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="审核未通过" placement="top">
               <el-button type="danger" icon="el-icon-s-custom" @click="disAgree(scope.row.userId)"></el-button>
             </el-tooltip>
-          </template> -->
+          </template>
         </el-table-column>
       </el-table>
       <span slot="footer" class="dialog-footer">
@@ -252,7 +246,8 @@ export default {
       userDialogVisible2: false, // 社团待审核成员界面的显示
       userlist2: [],
       userDialogVisible3: false, // 社团审核未通过成员界面的显示
-      userlist3: []
+      userlist3: [],
+      assId: 0
     }
   },
   created() {
@@ -262,7 +257,8 @@ export default {
     // 只显示“审核通过的社团”
     async getAssociateList() {
       const { data: res } = await this.$http.get('association/list', { params: this.queryInfo })
-      if (res.code !== 200) return this.$message.error('获取社团列表失败！')
+      if (res.code !== 200) return this.$message.error(res.data.提示)
+      this.$message.success('获取社团成功！')
       this.associatelist = res.data.records
       this.total = res.data.total
       console.log(res)
@@ -307,7 +303,7 @@ export default {
     async lookChief(assId) {
       const { data: res } = await this.$http.get('association/searchPresident', { params: { assId: assId } })
       if (res.code === 201) return this.$message.error(res.data.提示)
-      this.lookchieflist1 = [res.data.President]
+      this.lookchieflist1 = [res.data.user]
       this.lookChiefDialogVisible = true
       this.$message.success('获取社长成功！')
       console.log(this.lookchieflist1)
@@ -339,12 +335,23 @@ export default {
       console.log(this.userlist)
     },
     async lookUser2(assId) {
+      this.assId = assId
       const { data: res } = await this.$http.get('user/searchAssMemberWaitStatue', { params: { query: '', current: 1, size: 5, assId: assId } })
       if (res.code === 201) return this.$message.error(res.data.提示)
       this.userlist2 = res.data.records
       this.userDialogVisible2 = true
       this.$message.success('获取待审核社团成员成功！')
       console.log(this.userlist2)
+    },
+    async agree(userId) {
+      const { data: res } = await this.$http.get('user/agreeAssMember', { params: { userId: userId, assId: this.assId } })
+      if (res.code === 201) return this.$message.error(res.data.提示)
+      this.$message.success('管理员同意社团成员加入')
+    },
+    async disAgree(userId) {
+      const { data: res } = await this.$http.get('user/disAgreeAssMember', { params: { userId: userId, assId: this.assId } })
+      if (res.code === 201) return this.$message.error(res.data.提示)
+      this.$message.success('管理员不同意社团成员加入')
     },
     async lookUser3(assId) {
       const { data: res } = await this.$http.get('user/searchAssMemberNotStatue', { params: { query: '', current: 1, size: 5, assId: assId } })

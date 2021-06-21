@@ -2,7 +2,7 @@
   <div>
     <!-- 面包屑组件 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home3' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动广场</el-breadcrumb-item>
       <el-breadcrumb-item>待审核活动查看</el-breadcrumb-item>
     </el-breadcrumb>
@@ -20,7 +20,7 @@
       <el-table :data="activitylistmy" border stripe>
         <el-table-column type="index"></el-table-column>
         <el-table-column label="活动名称" prop="activityName"></el-table-column>
-        <el-table-column label="所属社团" prop="assName"></el-table-column>
+        <el-table-column label="所属社团" prop="assId"></el-table-column>
         <el-table-column label="活动简介" prop="activityBrief"></el-table-column>
         <el-table-column label="活动主题" prop="activityType"></el-table-column>
         <el-table-column label="活动是否可以请假">
@@ -37,17 +37,13 @@
         <el-table-column label="活动报名结束时间" prop="activitySignEndTime"></el-table-column>
         <el-table-column label="活动开始时间" prop="activityBeginTime"></el-table-column>
         <el-table-column label="活动结束时间" prop="activityEndTime"></el-table-column>
-        <el-table-column label="审核状态" prop="userActivityStatus"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <!-- <el-tooltip effect="dark" content="退出活动" placement="top">
-              <el-button type="primary" icon="el-icon-s-custom" @click="quitActivity(scope.row.activityId)"></el-button>
-            </el-tooltip> -->
             <el-tooltip effect="dark" content="审核通过" placement="top">
-              <el-button type="success" icon="el-icon-s-custom" @click="agree(scope.row.activityId)"></el-button>
+              <el-button type="success" icon="el-icon-s-custom" @click="agree(scope.row.activityId)" size="mini"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="审核未通过" placement="top">
-              <el-button type="danger" icon="el-icon-s-custom" @click="disAgree(scope.row.activityId)"></el-button>
+              <el-button type="danger" icon="el-icon-s-custom" @click="disAgree(scope.row.activityId)" size="mini"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -86,7 +82,7 @@ export default {
   methods: {
     async getActivityListMy() {
       const { data: res } = await this.$http.get('activity/searchActivityWaitStatue', { params: this.queryInfo })
-      if (res.code === 201) return this.$message.error('您还' + res.data.提示)
+      if (res.code === 201) return this.$message.error(res.data.提示)
       this.activitylistmy = res.data.records
       this.total = res.data.total
       console.log(res)
@@ -110,12 +106,6 @@ export default {
       if (res.code === 201) return this.$message.error(res.data.提示)
       this.$message.success(res.data.提示)
     }
-    // async quitActivity(activityId) {
-    //   const { data: res } = await this.$http.get('user/quitActivity', { params: { activityId: activityId, userId: this.$root.USER.userId } })
-    //   if (res.code === 201) return this.$message.error(res.data.提示)
-    //   console.log(res)
-    //   this.$message.success(res.data.提示)
-    // }
   }
 }
 </script>

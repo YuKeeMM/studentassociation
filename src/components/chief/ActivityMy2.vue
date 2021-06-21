@@ -2,7 +2,7 @@
   <div>
     <!-- 面包屑组件 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home2' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动广场</el-breadcrumb-item>
       <el-breadcrumb-item>我参加的活动</el-breadcrumb-item>
     </el-breadcrumb>

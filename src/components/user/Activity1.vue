@@ -81,6 +81,7 @@ export default {
     async getActivityList() {
       const { data: res } = await this.$http.get('activity/searchAllActivity', { params: this.queryInfo })
       if (res.code !== 200) return this.$message.error('获取活动列表失败！')
+      this.$message.success('获取活动列表成功！')
       this.activitylist = res.data.records
       this.total = res.data.total
       console.log(res)

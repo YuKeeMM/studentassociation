@@ -2,7 +2,7 @@
   <div>
     <!-- 面包屑组件 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home2' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>社团广场</el-breadcrumb-item>
       <el-breadcrumb-item>我管理的社团</el-breadcrumb-item>
     </el-breadcrumb>
@@ -26,16 +26,16 @@
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-tooltip effect="dark" content="新建公告" placement="top">
-              <el-button type="success" icon="el-icon-s-custom" @click="addNoticeDialogVisible = true" size="small"></el-button>
+              <el-button type="success" icon="el-icon-s-claim" @click="addNoticeDialogVisible = true" size="small"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="查看公告" placement="top">
-              <el-button type="success" icon="el-icon-s-custom" @click="lookNotic(scope.row.assId)" size="small"></el-button>
+              <el-button type="success" icon="el-icon-s-claim" @click="lookNotic(scope.row.assId)" size="small"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="查看成员" placement="top">
               <el-button type="primary" icon="el-icon-s-custom" @click="lookUser(scope.row.assId)" size="small"></el-button>
             </el-tooltip>
             <el-tooltip effect="dark" content="查看待审核成员" placement="top">
-              <el-button type="danger" icon="el-icon-s-custom" @click="lookUser2(scope.row.assId)" size="small"></el-button>
+              <el-button type="primary" icon="el-icon-s-custom" @click="lookUser2(scope.row.assId)" size="small"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -63,9 +63,6 @@
         </el-form-item>
         <el-form-item label="公告简介" prop="noticeBrief">
           <el-input v-model="addForm.noticeBrief"></el-input>
-        </el-form-item>
-        <el-form-item label="公告图片" prop="noticePicture">
-          <el-input v-model="addForm.noticePicture"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -102,9 +99,6 @@
         <el-form-item label="公告简介" prop="noticeBrief">
           <el-input v-model="modifyForm.noticeBrief"></el-input>
         </el-form-item>
-        <el-form-item label="公告图片" prop="noticePicture">
-          <el-input v-model="modifyForm.noticePicture"></el-input>
-        </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="modifyNoticeDialogVisible = false">取 消</el-button>
@@ -125,7 +119,7 @@
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-tooltip effect="dark" content="踢出社团" placement="top">
-              <el-button type="success" icon="el-icon-s-custom" @click="outUser(scope.row.userId)"></el-button>
+              <el-button type="primary" icon="el-icon-s-custom" @click="outUser(scope.row.userId)"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -189,9 +183,6 @@ export default {
         ],
         noticeBrief: [
           { required: true, message: '请输入公告简介', trigger: 'blur' }
-        ],
-        noticePicture: [
-          { required: true, message: '请输入公告图片', trigger: 'blur' }
         ]
       },
       addnoticelist: [],
@@ -210,9 +201,6 @@ export default {
         ],
         noticeBrief: [
           { required: true, message: '请输入公告简介', trigger: 'blur' }
-        ],
-        noticePicture: [
-          { required: true, message: '请输入公告图片', trigger: 'blur' }
         ]
       },
       userDialogVisible: false, // 社团成员界面的显示

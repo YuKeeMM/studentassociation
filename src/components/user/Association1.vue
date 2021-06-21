@@ -86,7 +86,8 @@ export default {
   methods: {
     async getAssociateList() {
       const { data: res } = await this.$http.get('association/list', { params: this.queryInfo })
-      if (res.code !== 200) return this.$message.error('获取社团列表失败！')
+      if (res.code !== 200) return this.$message.error(res.data.提示)
+      this.$message.success('获取社团列表成功！')
       this.associatelist = res.data.records
       this.total = res.data.total
       console.log(res)

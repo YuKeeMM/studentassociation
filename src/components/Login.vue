@@ -1,6 +1,7 @@
 // 模板区
 <template>
   <div class="login_container">
+    <img class="background_picture" src="../assets/school1.jpg" />
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
@@ -60,13 +61,13 @@ export default {
     return {
       // 这是登录表单的数据绑定对象
       loginForm: {
-        phone: '13221708851',
+        phone: '13588386674',
         password: '123456'
       },
       // 这是表单的验证规则对象
       loginFormRules: {
         phone: [
-          { required: true, message: '请输入登录名称', trigger: 'blur' },
+          { required: true, message: '请输入登录账号', trigger: 'blur' },
           { min: 3, max: 11, message: '长度在 3 到 11 个字符', trigger: 'blur' }
         ],
         password: [
@@ -159,6 +160,10 @@ export default {
 .login_container {
   background-color: #2b4b6b;
   height: 100%;
+}
+.background_picture {
+  height: 100%;
+  width: 100%;
 }
 .login_box {
   width: 450px;

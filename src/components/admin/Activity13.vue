@@ -2,7 +2,7 @@
   <div>
     <!-- 面包屑组件 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home3' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动广场</el-breadcrumb-item>
       <el-breadcrumb-item>活动查看</el-breadcrumb-item>
     </el-breadcrumb>
@@ -162,7 +162,7 @@ export default {
   methods: {
     async getActivityList() {
       const { data: res } = await this.$http.get('activity/searchAllActivity', { params: this.queryInfo })
-      if (res.code !== 200) return this.$message.error('获取活动列表失败！')
+      if (res.code !== 200) return this.$message.error(res.data.提示)
       this.activitylist = res.data.records
       this.total = res.data.total
       console.log(res)
